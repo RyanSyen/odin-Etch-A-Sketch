@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="app.js" defer></script>
     <link rel="icon" type="image/x-icon" href="flaticon.png">
+    <script src="https://kit.fontawesome.com/4c536a6bd5.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -46,8 +47,8 @@
         <div class="control grid-color">
             <div class="slider">
                 <div class="size-indicator">
-                    <p>Grid size slider</p> &nbsp;
-                    <p id="size">adsad</p>
+                    <p>Grid size</p> &nbsp;
+                    <p id="size">(16 x 16)</p>
                 </div>
 
                 <input id="slider" type="range" min="16" max="64" value="16">
@@ -63,6 +64,18 @@
             <div class="btn" id="clear">clear</div>
         </div>
     </div>
+    <footer class="footer">
+        <p>
+            Copyright ©
+            <script>
+                document.write(new Date().getFullYear())
+            </script>
+            &nbsp;-&nbsp;
+            Ryan Wong
+        </p>
+        <a href="https://github.com/RyanSyen" target="_blank">
+            <i class="fab fa-github"></i></a>
+    </footer>
 </body>
 
 </html>

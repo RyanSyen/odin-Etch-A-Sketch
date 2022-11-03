@@ -1,7 +1,7 @@
 // ---------------- global variables ----------------
 const containerSize = 500;
 
-var mode = 'random';
+var mode = 'change-color';
 
 var isDrawing = false;
 document.body.onmousedown = () => (isDrawing = true)
@@ -16,21 +16,49 @@ var current_color = color_picker.getAttribute('value');
 var default_color = '#ff0000';
 
 // random 🤖
+var showRandomMode = false;
 let randBtn = document.getElementById('random');
+// randBtn.classList.add('active');
 randBtn.addEventListener('click', () => {
-    mode = 'random';
+    // toggle random mode
+    showRandomMode = !showRandomMode;
+    if (showRandomMode) {
+        makeElementActive(randBtn);
+        mode = 'random';
+    } else {
+        // reset default active to random mode
+        resetActive();
+    }
 });
 
 // vintage 🕰️
+var showVintageMode = false;
 let vintageBtn = document.getElementById('vintage');
 vintageBtn.addEventListener('click', () => {
-    mode = 'vintage';
+    // toggle vintage mode
+    showVintageMode = !showVintageMode;
+    if (showVintageMode) {
+        makeElementActive(vintageBtn);
+        mode = 'vintage';
+    } else {
+        // reset default active to random mode
+        resetActive();
+    }
 });
 
 // neon 🌈
+var showNeonMode = false;
 let neonBtn = document.getElementById('neon');
 neonBtn.addEventListener('click', () => {
-    mode = 'neon';
+    // toggle neon mode
+    showNeonMode = !showNeonMode;
+    if (showNeonMode) {
+        makeElementActive(neonBtn);
+        mode = 'neon';
+    } else {
+        // reset default active to random mode
+        resetActive();
+    }
 });
 
 // grid size slider 🎚️
@@ -38,6 +66,8 @@ let gridSlider = document.getElementById('slider');
 gridSlider.addEventListener('change', (e) => {
     let div = document.getElementById('sketch-container');
     div.remove();
+    let gridSize = document.getElementById('size');
+    gridSize.innerText = `(${e.target.value} x ${e.target.value})`
     createGrid(e.target.value);
 });
 
@@ -45,39 +75,106 @@ gridSlider.addEventListener('change', (e) => {
 var showGridLine = true;
 let gridLines = document.getElementById('grid-lines');
 gridLines.addEventListener('click', (e) => {
+    // toggle grid
     showGridLine = !showGridLine;
     let grid = document.getElementsByClassName('grid-item');
     Object.values(grid).forEach(element => {
         if (showGridLine) {
+            // reset default active to random mode
+            resetActive();
             element.style.border = '1px solid';
         } else {
+            makeElementActive(gridLines);
             element.style.border = 'none';
         }
     });
 });
 
 // color fill 🪣
+var showColorFill = false;
 let colorFillBtn = document.getElementById('color-fill');
 colorFillBtn.addEventListener('click', () => {
+    // toggle fill
+    showColorFill = !showColorFill;
     let grid = document.getElementsByClassName('grid-item');
     Object.values(grid).forEach(element => {
-        element.style.backgroundColor = current_color;
+        if (showColorFill) {
+            makeElementActive(colorFillBtn);
+            element.style.backgroundColor = current_color;
+            element.setAttribute('data-bgchange', true);
+        } else {
+            element.style.backgroundColor = '#fff';
+            element.setAttribute('data-bgchange', false);
+            // reset default active to random mode
+            resetActive();
+        }
     });
+
 })
 
 // color grabber ✊
+var showColorGrabber = false;
 let colorGrabberBtn = document.getElementById('color-grabber');
 colorGrabberBtn.addEventListener('click', () => {
+    // toggle color grabber
+    showColorGrabber = !showColorGrabber;
     let grid = document.getElementsByClassName('grid-item');
     Object.values(grid).forEach(element => {
-        element.addEventListener('click', extractColor, true);
+        if (showColorGrabber) {
+            makeElementActive(colorGrabberBtn);
+            element.addEventListener('click', extractColor, true);
+        } else {
+            // reset default active to random mode
+            resetActive();
+            mode = 'change-color';
+        }
     });
 })
 
 // eraser 👝
+var showEraser = false;
 let eraserBtn = document.getElementById('eraser');
 eraserBtn.addEventListener('click', () => {
-    mode = 'eraser';
+    // toggle eraser
+    showEraser = !showEraser;
+    if (showEraser) {
+        makeElementActive(eraserBtn);
+        mode = 'eraser';
+    } else {
+        // reset default active to random mode
+        resetActive();
+    }
+})
+
+// dark shading 🖤
+var showDarkShading = false;
+let darkShadeBtn = document.getElementById('dark-shading');
+darkShadeBtn.addEventListener('click', () => {
+    // toggle dark shading
+    showDarkShading = !showDarkShading;
+    if (showDarkShading) {
+        makeElementActive(darkShadeBtn);
+        mode = 'shade';
+    } else {
+        // reset default active to random mode
+        resetActive();
+    }
+
+})
+
+// light shading 🖤
+var showLightShading = false;
+let lightShadeBtn = document.getElementById('lighten');
+lightShadeBtn.addEventListener('click', () => {
+    // toggle light shading
+    showLightShading = !showLightShading;
+    if (showLightShading) {
+        makeElementActive(lightShadeBtn);
+        mode = 'lighten';
+    } else {
+        // reset default active to random mode
+        resetActive();
+    }
 })
 
 // clear 🗑️
@@ -112,7 +209,9 @@ function createGrid(size) {
         gridCell.setAttribute('id', (i + 1));
         // set an attribute to check if its background color has changed
         gridCell.setAttribute('data-bgChange', false);
-        // add event listeners
+        // set an attribute to check its shading
+        gridCell.setAttribute('data-shade', 10);
+        // add event listeners onto the canvas
         sketchContainer.addEventListener('mouseover', draw)
         sketchContainer.addEventListener('mousedown', draw)
         sketchContainer.appendChild(gridCell).className = 'grid-item';
@@ -144,8 +243,10 @@ function neonGenerator() {
 }
 
 function draw(e) {
+    e.preventDefault();
     if (e.type === 'mouseover' && !isDrawing) return
     var bgchange = e.target.getAttribute('data-bgchange');
+    var currentShade = parseInt(e.target.getAttribute('data-shade'));
     switch (mode) {
         case 'random':
             // go back to default color
@@ -177,19 +278,40 @@ function draw(e) {
             e.target.style.backgroundColor = '#fff';
             e.target.setAttribute('data-bgchange', false);
             break;
+        case 'shade':
+            let darkenedShade = (currentShade - 1);
+            e.target.setAttribute('data-shade', darkenedShade);
+            e.target.style.filter = `brightness(${darkenedShade / 10})`;
+            e.target.setAttribute('data-bgchange', false);
+            break;
+        case 'lighten':
+            e.preventDefault();
+            if (currentShade === 10) {
+                e.preventDefault();
+                return;
+            }
+            let lightShade = (currentShade + 1);
+            e.target.setAttribute('data-shade', lightShade);
+            e.target.style.filter = `brightness(${lightShade / 10})`;
+            e.target.setAttribute('data-bgchange', false);
+            break;
     }
 }
 
 function clear() {
+    makeElementActive(clearbtn);
     let gridItems = document.getElementsByClassName('grid-item');
     Object.values(gridItems).forEach(element => {
         element.style.backgroundColor = '#fff';
         element.style.filter = 'brightness(100%)';
+        element.setAttribute('data-bgchange', false);
     })
+    // reset default active to random mode
+    resetActive();
 }
 
 function changeColor(e) {
-    console.log(e.target.value)
+    // console.log(e.target.value)
     // first change the color picker wrapper background color to the new color
     color_picker_wrapper.style.backgroundColor = e.target.value;
     // change the color in grid
@@ -212,3 +334,18 @@ function extractColor(e) {
     })
 }
 
+function makeElementActive(el) {
+    let all = document.querySelectorAll('.btn');
+    Object.values(all).forEach((element) => {
+        element.classList.remove('active');
+    })
+    el.classList.add('active');
+}
+
+function resetActive() {
+    let all = document.querySelectorAll('.btn');
+    Object.values(all).forEach((element) => {
+        element.classList.remove('active');
+    })
+    mode = 'change-color';
+}

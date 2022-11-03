@@ -10,6 +10,7 @@
     --color-light: rgba(52, 129, 210, .2);
     --default-color-picker: #000;
     --btn-border-color: #00cfde;
+    --primary-dark: #333;
 }
 
 html {
@@ -88,6 +89,12 @@ html {
     border-radius: 8px;
     cursor: pointer;
     margin: 10px 0;
+    transition: 2s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
 }
 
 .color-picker-container {
@@ -126,6 +133,10 @@ html {
     display: flex;
 }
 
+.active {
+    border: 3px solid var(--btn-border-color);
+}
+
 @keyframes waviy {
 
     0%,
@@ -137,4 +148,26 @@ html {
     20% {
         transform: translateY(-20px)
     }
+}
+
+/* FOOTER */
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.fa-github {
+    color: #fff;
+    font-size: 24px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.fa-github:hover {
+    transform: rotate(360deg) scale(1.2);
 }
