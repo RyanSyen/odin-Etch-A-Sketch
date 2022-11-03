@@ -1,0 +1,129 @@
+:root {
+    --grid-cols: 1;
+    --grid-rows: 1;
+    --grid-item-size: 1px;
+    --base-background: #050e2d;
+    --component-background: #151c32;
+    --black-background: #121212;
+    --main-color: #fff;
+    --secondary-color: #5e6a81;
+    --color-light: rgba(52, 129, 210, .2);
+    --default-color-picker: #000;
+    --btn-border-color: #00cfde;
+}
+
+html {
+    /* background-color: #121212; */
+    background-color: var(--base-background);
+    /* background-color: #01081f; */
+    /* background-color: var(--base-background); */
+    color: #ddd;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0;
+}
+
+.waviy {
+    position: relative;
+    -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0, 0, 0, .2));
+    font-size: 60px;
+}
+
+.waviy span {
+    font-family: 'Alfa Slab One', cursive;
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    text-transform: uppercase;
+    animation: waviy 1s infinite;
+    animation-delay: calc(.1s * var(--i));
+}
+
+.sketch-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#sketch-container {
+    display: grid;
+    grid-template-rows: repeat(var(--grid-rows), auto);
+    grid-template-columns: repeat(var(--grid-cols), auto);
+    background-color: #fff;
+    margin: 25px 0;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+}
+
+.control {
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.grid-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 0.6em; */
+    padding: var(--grid-item-size);
+    border: 1px solid #ddd;
+    /* max-width: 10px; */
+}
+
+.btn {
+    background-color: var(--component-background);
+    border: 1px solid var(--btn-border-color);
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.color-picker-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.color-picker-container>p {
+    margin-left: 10px;
+}
+
+#color-picker-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
+}
+
+#color-picker {
+    display: block;
+    border: none;
+    visibility: hidden;
+}
+
+@keyframes waviy {
+
+    0%,
+    40%,
+    100% {
+        transform: translateY(0)
+    }
+
+    20% {
+        transform: translateY(-20px)
+    }
+}

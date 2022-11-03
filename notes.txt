@@ -1,0 +1,18 @@
+
+color palattes 
+--------------
+rainbow mode = (ff0000,ffa500,ffff00,008000,0000ff,4b0082,ee82ee)
+vintage mode = (797d62,9b9b7a,baa587,d9ae94,f1dca7,ffcb69,e8ac65,d08c60,b58463,997b66)
+neon mode = (offofc,bc13fe,8a2be2,ff3131,ff5e00,7afbff,7fff00,1904da)
+
+mouse events
+------------
+when click -> draw == true -> element's background color changes -> when hover -> draw == true -> element's background color changes
+
+var bgChange = element.getAttribute('data-bgChange');
+            if (bgChange === 'true') {
+                return;
+            } else {
+                element.style.backgroundColor = `${hexGenerator()}`;
+                element.setAttribute('data-bgChange', true);
+            }

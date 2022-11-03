@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etch-A-Sketch</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="waviy">
+            <span style="--i:1">E</span>
+            <span style="--i:2">T</span>
+            <span style="--i:3">C</span>
+            <span style="--i:4">H</span>
+            <span style="--i:5">-</span>
+            <span style="--i:6">A</span>
+            <span style="--i:7">-</span>
+            <span style="--i:8">S</span>
+            <span style="--i:9">K</span>
+            <span style="--i:10">E</span>
+            <span style="--i:11">T</span>
+            <span style="--i:12">C</span>
+            <span style="--i:13">H</span>
+        </div>
+    </div>
+    <div class="sketch-wrapper" id="sketch-wrapper-id">
+    </div>
+    <div class="controls">
+        <div class="control color-theme">
+            <div class="color-picker-container">
+                <div id="color-picker-wrapper">
+                    <input id="color-picker" type="color" id="selectedColor" name="selectedColor" value="#ff0000">
+                </div>
+                <p>Color Picker</p>
+            </div>
+            <div class="btn" id="random">random mode</div>
+            <div class="btn" id="vintage">vintage mode</div>
+            <div class="btn" id="neon">neon mode</div>
+        </div>
+        <div class="control grid-color">
+            <div class="btn" id="slider">grid size slider</div>
+            <div class="btn" id="grid-lines">toggle grid lines</div>
+            <div class="btn" id="color-fill">color fill</div>
+            <div class="btn" id="color-grabber">color grabber</div>
+        </div>
+        <div class="control toggle-controls">
+            <div class="btn" id="eraser">toggle eraser</div>
+            <div class="btn" id="dark-shading">toggle dark shading</div>
+            <div class="btn" id="lighten">toggle lighten effect</div>
+            <div class="btn" id="clear">clear</div>
+        </div>
+    </div>
+</body>
+
+</html>
