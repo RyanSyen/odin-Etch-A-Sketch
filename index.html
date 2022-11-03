@@ -8,6 +8,7 @@
     <title>Etch-A-Sketch</title>
     <link rel="stylesheet" href="styles.css">
     <script src="app.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="flaticon.png">
 </head>
 
 <body>
@@ -43,7 +44,14 @@
             <div class="btn" id="neon">neon mode</div>
         </div>
         <div class="control grid-color">
-            <div class="btn" id="slider">grid size slider</div>
+            <div class="slider">
+                <div class="size-indicator">
+                    <p>Grid size slider</p> &nbsp;
+                    <p id="size">adsad</p>
+                </div>
+
+                <input id="slider" type="range" min="16" max="64" value="16">
+            </div>
             <div class="btn" id="grid-lines">toggle grid lines</div>
             <div class="btn" id="color-fill">color fill</div>
             <div class="btn" id="color-grabber">color grabber</div>
