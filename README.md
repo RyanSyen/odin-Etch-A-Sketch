@@ -20,8 +20,6 @@ Feature ideas to implement
 
 Snippets of github logo pixel art with squared frame...
 
-![With grid lines](https://photos.google.com/u/1/photo/AF1QipOA9EBPsgJK-g4fT472LrAY24qYTYOY_3emlIdZ.png)
-
-![Without grid lines](https://photos.google.com/u/1/photo/AF1QipNVC2Y9kcIlCnzeaCd9i8wn5m5SJTcHPyhOxHyp.png)
-
-![demo](https://photos.google.com/lr/photo/AIXbhmm0iurlOlJxMdJB96nNXYEXac9DnwdP1CDHXYE5TLS_HTKX-HSNpF-8jR9rKqrM0uQ96N_qu1r1p41qsNlEC2Cr-bKkjA.png)
+![With grid lines](https://user-images.githubusercontent.com/96362468/199766617-5ccf84dd-1eae-4ce1-8c4e-46b015693e13.png)
+![Without grid lines](https://user-images.githubusercontent.com/96362468/199766742-a35bd072-7b83-4d44-a195-b29b8edc2125.png)
+![demo](https://user-images.githubusercontent.com/96362468/199766966-4875d61b-a962-4270-af38-962798d445c1.png)
